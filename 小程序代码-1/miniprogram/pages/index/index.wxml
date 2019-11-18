@@ -1,0 +1,13 @@
+<template is="tem1" data="{{num2:1}}"></template>
+<view class="box" wx:if="{{isShow}}">{{num}}</view>
+<view wx:else>hide</view>
+<button bindtap="addHandle">add</button>
+<button bindtap="showBox">show/hide</button>
+<template is="tem1" data="{{num2:2}}"></template>
+<view wx:for="{{arr}}" wx:key="index">
+名称：{{item.name}}价格：{{item.price}}库存：{{item.num}}
+</view>
+
+<template name="tem1">
+<view>hello world{{num2}}</view>
+</template>
