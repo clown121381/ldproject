@@ -1,0 +1,21 @@
+<view class="item-bar {{item.isCheck?'active':''}}"
+  wx:for="{{todoList}}"
+  wx:key="index"
+  bindtap="checkItem"
+  data-id="{{item.id}}"
+>
+ <view class="item-check">
+  <checkbox checked="{{item.isCheck}}"/>
+ </view>
+ <view class="item-title">
+  {{item.title}}
+ </view>
+ <view class="item-btn">
+  <button type="warn" bindtap="doneHandle" size="mini">完成</button>
+ </view>
+</view>
+
+
+
+
+

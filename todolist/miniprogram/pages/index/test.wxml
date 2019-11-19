@@ -1,0 +1,5 @@
+<template name="tem1">
+  <view>hello{{index}}</view>
+</template>
+
+<view>林业大学</view>
