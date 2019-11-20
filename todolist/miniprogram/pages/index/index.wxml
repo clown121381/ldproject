@@ -1,3 +1,15 @@
+<!-- 表单开始部分 -->
+<view class="form-bar">
+  <view class="form-inp">
+    <input bindinput="inpHandle" placeholder="请输入待办事项" />
+    
+  </view>
+  <view>
+    <button bindtap="addHandle">添加</button>
+  </view>
+</view>
+<!-- 表单结束部分 -->
+<!-- 列表开始部分 -->
 <view class="item-bar {{item.isCheck?'active':''}}"
   wx:for="{{todoList}}"
   wx:key="index"
@@ -11,9 +23,11 @@
   {{item.title}}
  </view>
  <view class="item-btn">
-  <button type="warn" bindtap="doneHandle" size="mini">完成</button>
+  <button type="warn" bindtap="doneHandle" data-id="{{item.id}}"  size="mini">完成</button>
  </view>
 </view>
+<button type="warn" bindtap="doneCheck"  size="mini">完成选择</button>
+<!-- 列表结束部分 -->
 
 
 

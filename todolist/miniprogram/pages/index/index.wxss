@@ -15,3 +15,9 @@
 .active{
   background-color:blueviolet
 }
+.form-inp{
+  border-top:1px solid black;
+  border-bottom: 1px solid black; 
+  padding:30rpx;
+  margin-bottom: 20rpx
+}
