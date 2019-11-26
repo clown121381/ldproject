@@ -1,0 +1,2 @@
+<view>index页面</view>
+<button type="warn" bindtap="goTest">跳转</button>
