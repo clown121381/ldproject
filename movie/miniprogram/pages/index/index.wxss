@@ -1,0 +1,19 @@
+.container{
+  padding:30rpx;
+}
+.list-item{
+  display: flex;
+  width: 100%;
+  border-bottom: 1px solid black;
+  padding:20rpx 0;
+}
+.li-left{
+  flex:2;
+}
+.li-right{
+  flex:5;
+  padding-left:20rpx;
+}
+.li-img{
+  width: 100%;
+}

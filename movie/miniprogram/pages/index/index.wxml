@@ -1,0 +1,16 @@
+<view class="container">
+  <view wx:for="{{movieList}}" class="list-item">
+    <view class="li-left">
+      <image mode="widthFix" class="li-img" src="{{item.img}}"/>
+    </view>
+    <view class="li-right">
+      <view class="li-title">
+       {{item.nm}}
+      </view>
+      <view>
+        主演：{{item.star}}
+      </view>
+    </view>
+  </view>
+</view>
+

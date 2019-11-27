@@ -19,14 +19,34 @@
         // })  
         // console.log(arr);
 
-        var arr = [1,2,3,4,5,6,7,8,9]  
-        arr =  arr.filter((item,index,arr)=>{
-            // console.log(item,index,arr);
-            if(item != 5){
-                return item
-            }
-        })  
+        // var arr = [1,2,3,4,5,6,7,8,9]  
+        // arr =  arr.filter((item,index,arr)=>{
+        //     // console.log(item,index,arr);
+        //     if(item != 5){
+        //         return item
+        //     }
+        // })  
+        // console.log(arr);
+
+
+        // var obj = {
+        //     name:"abc",
+        //     speak:function(){
+        //         var _this = this;
+        //         console.log(this)
+        //         function foo(){
+        //             console.log(_this)
+        //         }
+        //     }
+        // }
+
+        var arr = [1,2,3,4,5,6,7,8,9,10,11,12,13]
+        var arr2 = [];
+        arr2 = arr.splice(0,10);
+        console.log(arr2.join(","));
         console.log(arr);
+        
+        
         
     </script>
 </body>
