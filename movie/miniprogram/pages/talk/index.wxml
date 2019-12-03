@@ -1,0 +1,4 @@
+<view>
+<input placeholder="请输入" bindinput="inpHandle" />
+</view>
+<button bindtap="sendHandle">发送</button>

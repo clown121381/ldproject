@@ -1,6 +1,8 @@
 {
   "pages": [
-    "pages/index/index"
+    "pages/index/index",
+    "pages/detail/index",
+    "pages/talk/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",
@@ -8,6 +10,23 @@
     "navigationBarBackgroundColor": "#F6F6F6",
     "navigationBarTitleText": "云开发 QuickStart",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "selectedColor":"#d81e06",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "电影",
+        "iconPath":"./image/movie.png",
+        "selectedIconPath":"./image/movie1.png"
+      },
+      {
+        "pagePath": "pages/talk/index",
+        "text": "聊天",
+        "iconPath": "./image/talk.png",
+        "selectedIconPath": "./image/talk1.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json",
   "style": "v2"

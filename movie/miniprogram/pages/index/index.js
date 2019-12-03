@@ -6,7 +6,8 @@ Page({
    */
   data: {
     movieList:[],
-    movieIds:[]
+    movieIds:[],
+    total:0
   },
   //格式化图片地址
   formatUrl(dataList){
@@ -19,18 +20,36 @@ Page({
   },
   //获取猫眼电影列表 - 更多
   getMoreList(){
+   
+    let _this = this;
     let thisMovieId = this.data.movieIds;
     let thisMovieIds = thisMovieId.splice(0,10);
-    wx.request({
-      data:{
-        token:"",
-        movieIds: thisMovieIds.join(",")
-      },
-      url: 'http://m.maoyan.com/ajax/moreComingList',
-      success(res){
-        console.log(res.data.coming);
-      }
-    })
+    let thisMovieList = this.data.movieList;
+
+    console.log(thisMovieId.length, thisMovieList.length)
+    if (this.data.total == thisMovieList.length){
+      wx.showToast({
+        title: '数据加载完成',
+      })
+    }else{
+      wx.showLoading({
+        title: '加载中...',
+      })
+      wx.request({
+        data: {
+          token: "",
+          movieIds: thisMovieIds.join(",")
+        },
+        url: 'http://m.maoyan.com/ajax/moreComingList',
+        success(res) {
+          wx.hideLoading();
+          let thisComing = _this.formatUrl(res.data.coming)
+          _this.setData({
+            movieList: [...thisMovieList, ...thisComing]
+          })
+        }
+      })
+    }
   },
   //获取猫眼电影列表
   getDataList(){
@@ -42,11 +61,18 @@ Page({
       url: 'http://m.maoyan.com/ajax/movieOnInfoList',
       success(res){
         _this.setData({
+          total: res.data.movieIds.length + res.data.movieList.length,
           movieIds: res.data.movieIds,
           movieList: _this.formatUrl(res.data.movieList) 
         })
         wx.hideLoading()
       }
+    })
+  },
+  //跳转至详情页面
+  goDetail(e){
+    wx.navigateTo({
+      url: '../detail/index?id=' + e.currentTarget.dataset.id,
     })
   },
   /**
