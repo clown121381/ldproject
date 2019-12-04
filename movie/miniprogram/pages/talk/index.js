@@ -1,16 +1,78 @@
-// miniprogram/pages/talk/index.js
+import md5 from "../../utils/md5.js"
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    inpVal:""
+    num:0,
+    inpVal:"",
+    talkList:[]
   },
+
+  //组件通信测试函数
+  fooHandle(n){
+    console.log(n.detail)
+  },
+
   //获取聊天内容
   inpHandle(e){
     this.setData({
       inpVal:e.detail.value
+    })
+  },
+  //获取时间戳
+  getTimeStamp(){
+    var timer = new Date();
+    timer = Date.parse(timer);
+    return(timer.toString().substr(0,10));
+  },
+  //获取随机字符串
+  getNonceStr(){
+    var str = Math.random();
+    return(str.toString(36).substr(2));
+  },
+  //获取签名
+  getSign(data){
+    let arr = [];
+    let urlStr = "";
+    //第一步根据KEY值进行排序
+    arr = Object.keys(data).sort();
+    //第二部拼接url 并转码
+    arr.map((item) => {
+      urlStr += item + "=" + encodeURI(data[item]) + "&"
+    })
+    //第三部拼接 app_key
+    urlStr +="app_key=EowwNAHk1c0s8vx6"
+    //第四步 MD5加密
+    urlStr = md5(urlStr).toUpperCase()
+
+    return urlStr
+  },
+  //发送聊天请求
+  sendHandle(){
+    let thisTalkList = this.data.talkList;
+    let _this = this;
+    let data={
+      app_id:"2125031440",
+      time_stamp:this.getTimeStamp(),
+      nonce_str:this.getNonceStr(),
+      session:"10000",
+      question: this.data.inpVal
+    }
+    data.sign = this.getSign(data)
+    wx.request({
+      url: 'https://api.ai.qq.com/fcgi-bin/nlp/nlp_textchat',
+      data,
+      success(res){
+        thisTalkList.push({
+          answer: res.data.data.answer,
+          question: _this.data.inpVal
+        })
+        _this.setData({
+          talkList:thisTalkList
+        })
+      }
     })
   },
   /**

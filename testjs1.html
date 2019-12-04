@@ -58,8 +58,35 @@
         // timer = Date.parse(timer);
         // console.log(timer.toString().substr(0,10));
 
-        var str = Math.random();
-        console.log(str.toString(36).substr(2));
+        // var str = Math.random();
+        // console.log(str.toString(36).substr(2));
+            //获取时间戳
+            function getTimeStamp(){
+                var timer = new Date();
+                timer = Date.parse(timer);
+                return(timer.toString().substr(0,10));
+            }
+            //获取随机字符串
+            function getNonceStr(){
+                var str = Math.random();
+                return(str.toString(36).substr(2));
+            }
+
+
+        let data={
+            app_id:"2125031440",
+            time_stamp:this.getTimeStamp(),
+            nonce_str:this.getNonceStr(),
+            session:"10000",
+            question:"你叫啥"
+        }
+        let arr = [];
+        let urlStr = "";
+        arr = Object.keys(data).sort();
+        arr.map((item)=>{
+            urlStr+=item+"="+encodeURI(data[item])+"&"
+        })
+        console.log(urlStr);
         
         
         

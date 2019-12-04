@@ -1,0 +1,3 @@
+<!--component/linda/index.wxml-->
+<text bindtap="clickHandle" class="title-color">林业大学{{type}}</text>
+{{str}}

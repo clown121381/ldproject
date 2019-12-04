@@ -1,4 +1,10 @@
 <view>
 <input placeholder="请输入" bindinput="inpHandle" />
 </view>
-<button bindtap="sendHandle">发送</button>
+<button type="warn" bindtap="sendHandle">发送</button>
+<view class="talk-list" wx:for="{{talkList}}" wx:key="index">
+<view class="answer">{{item.answer}}</view>
+<view class="question">{{item.question}}</view>
+</view>
+<view>{{num}}</view>
+<linda bindldHandle="fooHandle"/>

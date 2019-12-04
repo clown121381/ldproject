@@ -1,1 +1,9 @@
-/* miniprogram/pages/talk/index.wxss */
+.talk-list .answer{
+  text-align: right
+}
+.talk-list .question{
+  text-align: left;
+}
+.title-color{
+  color: red;
+}
