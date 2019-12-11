@@ -1,0 +1,7 @@
+<button bindtap="testAdd">add</button>
+<button bindtap="testGet">get</button>
+<view wx:for="{{testList}}">
+{{item.title}}
+<button bindtap="testUpdate" data-id="{{item._id}}">Update</button>
+<button data-id="{{item._id}}" bindtap="testDelete">del</button>
+</view>
