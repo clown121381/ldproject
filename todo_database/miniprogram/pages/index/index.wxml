@@ -1,0 +1,28 @@
+<view class="formbar">
+  <view>
+    <input value="{{inpVal}}" bindinput="inpHandle" placeholder="请输入代办事项"></input>
+  </view>
+  <button bindtap="addHandle">add</button>
+</view>
+<!-- 列表部分 -->
+<button bindtap="getWhere" data-order="0">全部</button>
+<button bindtap="getWhere" data-order="1">已完成</button>
+<button bindtap="getWhere" data-order="2">未完成</button>
+<view class="item-bar {{item.isCheck?'active':''}}"
+  wx:for="{{todoList}}"
+  wx:key="index"
+  bindtap="checkItem"
+  data-id="{{item.id}}"
+>
+ <view class="item-check">
+  <checkbox checked="{{item.isCheck}}"/>
+ </view>
+ <view class="item-title">
+  {{item.title}}
+ </view>
+ <view class="item-btn">
+  <button type="warn" bindtap="doneHandle" data-id="{{item._id}}"  size="mini">{{item.done?'删除':'完成'}}</button>
+ </view>
+</view>
+<button type="warn" bindtap="doneCheck"  size="mini">完成选择</button>
+
