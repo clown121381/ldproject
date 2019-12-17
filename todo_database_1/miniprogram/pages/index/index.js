@@ -9,8 +9,7 @@ Page({
    */
   data: {
     inpVal:"",
-    todoList:[],
-    orderType:0
+    todoList:[]
   },
   //保存inp值
   inpHandle(e){
@@ -37,91 +36,36 @@ Page({
   //条件按钮
   getWhere(e){
     let thisOrder = e.currentTarget.dataset.order;
-    this.setData({
-      orderType:thisOrder
-    }) 
-    this.getToDoList();
+    if(thisOrder == 0){
+
+    }else if(thisOrder == 1){
+
+    }else if(thisOrder){}
   },
   //获取列表数据
   getToDoList(){
-    let orderType = this.data.orderType;
-    let orderObj = {};
-    if(orderType==0){
-      orderObj={}
-    }else if(orderType == 1){
-      orderObj={
-        done:true
-      }
-    }else if(orderType == 2){
-      orderObj={
-        done:false
-      }
-    }
     wx.showLoading({
       title: 'loading',
     })
-    todoDB.where(orderObj).get().then((res)=>{
-      let thisList = res.data.map((item)=>{
-        item.isCheck = false;
-        return item
-      })
+    todoDB.where({
+      done:false
+    }).get().then((res)=>{
+      console.log(res)
       this.setData({
-        todoList:thisList
+        todoList:res.data
       })
       wx.hideLoading()
     })
   },
-  //完成按钮 & 删除操作
+  //完成按钮
   doneHandle(e){
     let thisId = e.currentTarget.dataset.id;
-    let thisDone = e.currentTarget.dataset.done;
-    console.log(thisDone)
-    if(thisDone){
-      todoDB.doc(thisId).remove().then((res)=>{
-        this.getToDoList();
-      })
-    }else{
-      todoDB.doc(thisId).update({
-        data:{
-          done:true
-        }
-      }).then((res)=>{
-        this.getToDoList();
-      })
-    }
-    
-  },
-  //单行选中
-  checkItem(e){
-    let thisId = e.currentTarget.dataset.id;
-    let thisList = this.data.todoList;
-    thisList = thisList.map((item)=>{
-      if(thisId == item._id){
-        item.isCheck = true;
-      }
-      return item;
-    })
-    this.setData({
-      todoList:thisList
-    })
-  },
-  //完成选中项
-  doneCheck(){
-    let checkIds = [];
-    let thisList = this.data.todoList;
-    thisList.map((item)=>{
-      if(item.isCheck){
-        checkIds.push(item._id)
-      }
-    })
-    console.log(checkIds);
-    wx.cloud.callFunction({
-      name:"todo_update",
+    todoDB.doc(thisId).update({
       data:{
-        ids:checkIds
+        done:true
       }
     }).then((res)=>{
-      console.log(res);
+      this.getToDoList();
     })
   },
   /**

@@ -1,0 +1,23 @@
+.item-bar{
+  display: flex;
+  padding:30rpx;
+  border-bottom:1px solid black;
+}
+.item-check{
+  flex-grow:1;
+}
+.item-title{
+  flex-grow:1;
+}
+.item-btn{
+  flex-grow:1;
+}
+.active{
+  background-color:blueviolet
+}
+.form-inp{
+  border-top:1px solid black;
+  border-bottom: 1px solid black; 
+  padding:30rpx;
+  margin-bottom: 20rpx
+}

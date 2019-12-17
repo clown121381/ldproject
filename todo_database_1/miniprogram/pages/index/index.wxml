@@ -12,7 +12,7 @@
   wx:for="{{todoList}}"
   wx:key="index"
   bindtap="checkItem"
-  data-id="{{item._id}}"
+  data-id="{{item.id}}"
 >
  <view class="item-check">
   <checkbox checked="{{item.isCheck}}"/>
@@ -21,7 +21,7 @@
   {{item.title}}
  </view>
  <view class="item-btn">
-  <button type="warn" bindtap="doneHandle" data-id="{{item._id}}" data-done="{{item.done}}"  size="mini">{{item.done?'删除':'完成'}}</button>
+  <button type="warn" bindtap="doneHandle" data-id="{{item._id}}"  size="mini">{{item.done?'删除':'完成'}}</button>
  </view>
 </view>
 <button type="warn" bindtap="doneCheck"  size="mini">完成选择</button>
