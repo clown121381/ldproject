@@ -1,0 +1,5 @@
+<button bindtap="chooseHandle">chooseImg</button>
+<button bindtap="upHandle">up</button>
+<button bindtap="downHandle">down</button>
+<button bindtap="delHandle">del</button>
+<image src="{{imgUrl}}"></image>

@@ -1,7 +1,8 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/cloud_test/index"
+    "pages/cloud_test/index",
+    "pages/img_test/index"
   ],
   "window": {
     "backgroundColor": "#F6F6F6",

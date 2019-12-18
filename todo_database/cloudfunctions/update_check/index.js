@@ -5,19 +5,21 @@ cloud.init({
   env:"release-a38306"
 })
 const db = cloud.database()
-const todoDB = db.collection('todos_db')
-const _ = db.command;
+const todos = db.collection('todo_data')
+const _ = db.command
+
 // 云函数入口函数
 exports.main = async (event, context) => {
+  console.log(event.ids)
   try{
-    return await todoDB.where({
-      _id:_.in(event.ids)
+    return await todos.where({
+      _id: _.in(event.ids)
     }).update({
       data:{
         done:true
       }
     })
   }catch(e){
-
+    console.log(e)
   }
 }
